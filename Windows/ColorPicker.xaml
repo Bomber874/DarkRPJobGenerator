@@ -1,0 +1,28 @@
+﻿<Window x:Class="DarkRPJobGenerator.Windows.ColorPicker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DarkRPJobGenerator.Windows"
+        mc:Ignorable="d"
+        Title="Выбор цвета" Height="183" Width="220">
+    <Grid>
+        <DockPanel>
+            <TextBox Width="auto" DockPanel.Dock="Top" Margin="10,10,10,0" x:Name="TextColor"></TextBox>
+            <DockPanel DockPanel.Dock="Top">
+                <Slider Margin="10,10,0,0" ValueChanged="SliderValue_ValueChanged" x:Name="SliderRed" HorizontalAlignment="Left" Width="120" Minimum="0" Maximum="255"/>
+                <TextBox x:Name="TextR" LostFocus="TextR_LostFocus"></TextBox>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <Slider Margin="10,10,0,0" ValueChanged="SliderValue_ValueChanged" x:Name="SliderGreen" HorizontalAlignment="Left" Width="120" Minimum="0" Maximum="255"/>
+                <TextBox x:Name="TextG" LostFocus="TextG_LostFocus"></TextBox>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <Slider Margin="10,10,0,0" ValueChanged="SliderValue_ValueChanged" x:Name="SliderBlue" HorizontalAlignment="Left" Width="120" Minimum="0" Maximum="255"/>
+                <TextBox x:Name="TextB" LostFocus="TextB_LostFocus"></TextBox>
+            </DockPanel>
+            <Button x:Name="SaveButton" Margin="0,10,0,0" Click="SaveButton_Click">Сохранить</Button>
+        </DockPanel>
+
+    </Grid>
+</Window>

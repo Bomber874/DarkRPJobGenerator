@@ -1,0 +1,165 @@
+﻿<Window x:Class="DarkRPJobGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DarkRPJobGenerator"
+        xmlns:ValidationRules="clr-namespace:DarkRPJobGenerator.ValidationRules"
+        mc:Ignorable="d"
+        Title="Основное окно" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="50*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Column="0">
+                    <Label DockPanel.Dock="Top">Модели:</Label>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <ListBox x:Name="ModelsList" ItemsSource="{Binding Models}"></ListBox>
+                        <TextBox LostFocus="RefreshJobText" x:Name="AddModel" Grid.Row="1" KeyDown="AddModel_KeyDown"></TextBox>
+                    </Grid>
+                </DockPanel>
+                <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                <DockPanel Grid.Column="2">
+                    <Label DockPanel.Dock="Top">Оружия:</Label>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <ListBox x:Name="WeaponsList" ItemsSource="{Binding Weapons}"></ListBox>
+                        <TextBox LostFocus="RefreshJobText" x:Name="AddWeapon" KeyDown="AddWeapon_KeyDown" Grid.Row="1"></TextBox>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+            <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+            <WrapPanel ItemWidth="120" Grid.Row="0" Grid.Column="0">
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">ID:</Label>
+                    <TextBox x:Name="IDInput" LostFocus="RefreshJobText">
+                        <Binding Path="ID" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule/>
+                                <ValidationRules:ID/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Название:</Label>
+                    <TextBox x:Name="NameInput" LostFocus="RefreshJobText" Text="{Binding Name}"></TextBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Категория:</Label>
+                    <!--<ComboBox x:Name="CategorySelector"></ComboBox>-->
+                    <TextBox x:Name="CategoryInput" LostFocus="RefreshJobText"></TextBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Цвет:</Label>
+                    <Button LostFocus="RefreshJobText" x:Name="ColorButton" Height="21" Click="ColorButton_Click"/>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Описание:</Label>
+                    <TextBox LostFocus="RefreshJobText" Text="{Binding Description}" x:Name="DescriptionInput" AcceptsReturn="True"></TextBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Команда:</Label>
+                    <TextBox LostFocus="RefreshJobText" x:Name="CommandInput">
+                        <Binding Path="Command" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule/>
+                                <ValidationRules:Command/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Доступ:</Label>
+                    <ComboBox x:Name="AccessSelector" SelectionChanged="AccessSelector_SelectionChanged">
+                        <ComboBoxItem>Для всех</ComboBoxItem>
+                        <ComboBoxItem>Админ+</ComboBoxItem>
+                        <ComboBoxItem>Суперадмин</ComboBoxItem>
+                    </ComboBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Голосование:</Label>
+                    <CheckBox x:Name="Vote" Checked="Vote_Checked">Необходимо</CheckBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Лицензия:</Label>
+                    <CheckBox x:Name="License" Checked="License_Checked">Имеется</CheckBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Увольнение:</Label>
+                    <CheckBox x:Name="Demote" Checked="Demote_Checked">Можно уволить</CheckBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Зарплата:</Label>
+                    <TextBox LostFocus="RefreshJobText" x:Name="SalaryInput">
+                        <Binding Path="Salary" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule/>
+                                <ValidationRules:Numbers/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Максимум:</Label>
+                    <TextBox LostFocus="RefreshJobText" x:Name="MaxInput">
+                        <Binding Path="Max" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule/>
+                                <ValidationRules:Numbers/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Здоровье:</Label>
+                    <TextBox LostFocus="RefreshJobText" x:Name="HealthInput">
+                        <Binding Path="Health" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule/>
+                                <ValidationRules:Numbers/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                </DockPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Броня:</Label>
+                    <TextBox LostFocus="RefreshJobText" x:Name="ArmorInput">
+                        <Binding Path="Armor" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule/>
+                                <ValidationRules:Numbers/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                </DockPanel>
+            </WrapPanel>
+        </Grid>
+        <RichTextBox x:Name="OutTextBox" Block.LineHeight="1" Grid.Column="1"></RichTextBox>
+    </Grid>
+</Window>
