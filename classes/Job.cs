@@ -15,6 +15,7 @@ namespace DarkRPJobGenerator
             Models = new ObservableCollection<string>();
             Weapons = new ObservableCollection<string>();
             CanDemote = true;
+            Health = 100;
         }
         public string ID { get; set; }
         public string Name { get; set; }

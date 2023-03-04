@@ -35,7 +35,15 @@
                             <RowDefinition/>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-                        <ListBox x:Name="ModelsList" ItemsSource="{Binding Models}"></ListBox>
+                        <ListBox SelectionMode="Extended" x:Name="ModelsList" ItemsSource="{Binding Models}">
+                            <ListBox.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem x:Name="DellModel" Header="Удалить" Click="DellModel_Click"/>
+                                    <MenuItem x:Name="DellSelectedModels" Header="Удалить выбранное" Click="DellSelectedModels_Click"/>
+                                    <MenuItem x:Name="DellAllModels" Header="Удалить все модели" Click="DellAllModels_Click"/>
+                                </ContextMenu>
+                            </ListBox.ContextMenu>
+                        </ListBox>
                         <TextBox LostFocus="RefreshJobText" x:Name="AddModel" Grid.Row="1" KeyDown="AddModel_KeyDown"></TextBox>
                     </Grid>
                 </DockPanel>
@@ -47,7 +55,15 @@
                             <RowDefinition/>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-                        <ListBox x:Name="WeaponsList" ItemsSource="{Binding Weapons}"></ListBox>
+                        <ListBox SelectionMode="Extended" x:Name="WeaponsList" ItemsSource="{Binding Weapons}">
+                            <ListBox.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem x:Name="DellWeapon" Header="Удалить" Click="DellWeapon_Click"/>
+                                    <MenuItem x:Name="DellSelectedWeapons" Header="Удалить выбранное" Click="DellSelectedWeapons_Click"/>
+                                    <MenuItem x:Name="DellAllWeapons" Header="Удалить всё оружие" Click="DellAllWeapons_Click"/>
+                                </ContextMenu>
+                            </ListBox.ContextMenu>
+                        </ListBox>
                         <TextBox LostFocus="RefreshJobText" x:Name="AddWeapon" KeyDown="AddWeapon_KeyDown" Grid.Row="1"></TextBox>
                     </Grid>
                 </DockPanel>

@@ -88,5 +88,71 @@ namespace DarkRPJobGenerator
             CurrentJob.CanDemote = Demote.IsChecked == true;
             GenerateJob();
         }
+
+        private void DellWeapon_Click(object sender, RoutedEventArgs e)
+        {
+            if (WeaponsList.SelectedItem == null)
+            {
+                MessageBox.Show("Вы не выбрали строку");
+                return;
+            }
+            CurrentJob.Weapons.Remove(WeaponsList.SelectedItem.ToString());
+            GenerateJob();
+        }
+
+        private void DellSelectedWeapons_Click(object sender, RoutedEventArgs e)
+        {
+            if (WeaponsList.SelectedItem == null)
+            {
+                MessageBox.Show("Вы не выбрали строку");
+                return;
+            }
+            string[] ToDelete = new string[WeaponsList.SelectedItems.Count];
+            WeaponsList.SelectedItems.CopyTo(ToDelete, 0);
+            foreach (string wep in ToDelete)
+            {
+                CurrentJob.Weapons.Remove(wep);
+            }
+            GenerateJob();
+        }
+
+        private void DellAllWeapons_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentJob.Weapons.Clear();
+            GenerateJob();
+        }
+
+        private void DellModel_Click(object sender, RoutedEventArgs e)
+        {
+            if (ModelsList.SelectedItem == null)
+            {
+                MessageBox.Show("Вы не выбрали строку");
+                return;
+            }
+            CurrentJob.Models.Remove(ModelsList.SelectedItem.ToString());
+            GenerateJob();
+        }
+
+        private void DellSelectedModels_Click(object sender, RoutedEventArgs e)
+        {
+            if (ModelsList.SelectedItem == null)
+            {
+                MessageBox.Show("Вы не выбрали строку");
+                return;
+            }
+            string[] ToDelete = new string[ModelsList.SelectedItems.Count];
+            ModelsList.SelectedItems.CopyTo(ToDelete, 0);
+            foreach (string wep in ToDelete)
+            {
+                CurrentJob.Models.Remove(wep);
+            }
+            GenerateJob();
+        }
+
+        private void DellAllModels_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentJob.Models.Clear();
+            GenerateJob();
+        }
     }
 }
